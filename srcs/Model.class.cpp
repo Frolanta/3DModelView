@@ -2,7 +2,7 @@
 #include <iostream>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <42run.hpp>
+#include "general.hpp"
 
 Model::Model(std::string path, Shader * s){
 
@@ -62,6 +62,12 @@ void Model::loadModel(std::string path) {
         std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
         return;
     }
+
+
+    std::cout << "Number of total meshes: " << scene->mNumMeshes << std::endl;
+    std::cout << "Animations: " << scene->mNumAnimations << std::endl;
+
+
     // Retrieve the directory path of the filepath
     this->_directory = path.substr(0, path.find_last_of('/'));
 

@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <TimeManager.class.hpp>
+#include <InputManager.class.hpp>
 
 Graphic & Graphic::instance(void) {
     static Graphic inst;
@@ -75,9 +76,7 @@ Graphic::Graphic(void) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
+    _open = true;
 
     //wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -86,26 +85,29 @@ Graphic::Graphic(void) {
 
 void Graphic::clear(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void Graphic::display(void) {
     glfwSwapBuffers(this->_window);
 }
 
-bool Graphic::processInput(Camera * camera) {
+void Graphic::captureInput(void) {
 
 
     glfwPollEvents();
 
-    if (glfwGetKey(this->_window, GLFW_KEY_I))
-        camera->moveCamera(camera->getSpeed() * TimeManager::instance().deltaTime);
-    if (glfwGetKey(this->_window, GLFW_KEY_K))
-        camera->moveCamera(-1 * camera->getSpeed() * TimeManager::instance().deltaTime);
-    if (glfwGetKey(this->_window, GLFW_KEY_J))
-        camera->strafe(-1 * camera->getSpeed() * TimeManager::instance().deltaTime);
-    if (glfwGetKey(this->_window, GLFW_KEY_L))
-        camera->strafe(camera->getSpeed() * TimeManager::instance().deltaTime);
+    if (glfwGetKey(this->_window, GLFW_KEY_ESCAPE))
+        _open = false;
+
+    if (glfwGetKey(this->_window, GLFW_KEY_W))
+        InputManager::instance().processInput(eKey::KEYUP);
+    if (glfwGetKey(this->_window, GLFW_KEY_S))
+        InputManager::instance().processInput(eKey::KEYDOWN);
+    if (glfwGetKey(this->_window, GLFW_KEY_A))
+        InputManager::instance().processInput(eKey::KEYLEFT);
+    if (glfwGetKey(this->_window, GLFW_KEY_D))
+        InputManager::instance().processInput(eKey::KEYRIGHT);
 
 
     double mouseX, mouseY;
@@ -113,15 +115,17 @@ bool Graphic::processInput(Camera * camera) {
     glfwGetCursorPos(this->_window, &mouseX, &mouseY);
 
     if ( mouseX != 0 && mouseY != 0 ) {
-        camera->setViewByMouse((float)mouseX, (float)mouseY);
+        InputManager::instance().moveMoved(glm::vec2((float)mouseX, (float)mouseY));
     }
 
     glfwSetCursorPos(this->_window, 0, 0);
 
-
-    return true;
 }
 
 void Graphic::terminate(void) {
     glfwTerminate();
+}
+
+bool Graphic::isOpen(void) {
+    return _open;
 }

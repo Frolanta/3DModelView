@@ -1,5 +1,5 @@
-#ifndef _42RUN_MESH_CLASS_HPP_
-#define _42RUN_MESH_CLASS_HPP_
+#ifndef _MESH_CLASS_HPP_
+#define _MESH_CLASS_HPP_
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -8,7 +8,6 @@
 #include <Shader.class.hpp>
 #include <vector>
 #include <assimp/types.h>
-
 
 struct Vertex {
     glm::vec3 position;

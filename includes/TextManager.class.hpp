@@ -1,5 +1,5 @@
-#ifndef _42RUN_TEXTMANAGER_CLASS_HPP_
-#define _42RUN_TEXTMANAGER_CLASS_HPP_
+#ifndef _TEXTMANAGER_CLASS_HPP_
+#define _TEXTMANAGER_CLASS_HPP_
 
 
 #include <string>
@@ -10,7 +10,7 @@
 #include <glm/gtc/type_ptr.hpp>
 //#include FT_FREETYPE_H
 #include <freetype2/freetype.h>
-#include <42run.hpp>
+#include <general.hpp>
 #include <map>
 
 #include <Shader.class.hpp>

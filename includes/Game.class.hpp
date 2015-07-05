@@ -1,5 +1,5 @@
-#ifndef _42RUN_GAME_CLASS_HPP_
-#define _42RUN_GAME_CLASS_HPP_
+#ifndef _GAME_CLASS_HPP_
+#define _GAME_CLASS_HPP_
 
 #include <Camera.class.hpp>
 #include <list>
@@ -15,6 +15,7 @@ public:
 
 private:
     Camera      _camera;
+
 
 };
 

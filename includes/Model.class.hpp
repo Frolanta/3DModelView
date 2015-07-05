@@ -1,5 +1,5 @@
-#ifndef _42RUN_MODEL_CLASS_HPP_
-#define _42RUN_MODEL_CLASS_HPP_
+#ifndef _MODEL_CLASS_HPP_
+#define _MODEL_CLASS_HPP_
 
 #include <string>
 #include <Shader.class.hpp>

@@ -1,9 +1,9 @@
-#ifndef _42RUN_GRAPHIC_CLASS_HPP_
-#define _42RUN_GRAPHIC_CLASS_HPP_
+#ifndef _GRAPHIC_CLASS_HPP_
+#define _GRAPHIC_CLASS_HPP_
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <42run.hpp>
+#include <general.hpp>
 
 #include <Camera.class.hpp>
 
@@ -19,14 +19,16 @@ public:
     void clear(void);
     void display(void);
 
-    bool processInput(Camera * camera);
+    void captureInput(void);
+
+    bool isOpen(void);
 
 
 private:
     Graphic(void);
 
     GLFWwindow* _window;
-
+    bool        _open;
 
 };
 

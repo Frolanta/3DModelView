@@ -19,7 +19,7 @@ OBJDIR  = .objs
 LDFLAGS = `pkg-config --static --libs glfw3 glew assimp freetype2` -L ~/libs/lib/ -lSOIL
 LISTDIR = srcs
 DIRSRC = srcs
-NAME = 42run
+NAME = modelloader
 SRC = $(wildcard $(DIRSRC)/*.cpp)
 OBJ = $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
