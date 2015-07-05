@@ -10,6 +10,7 @@
 #include <iostream>
 #include <time.h>
 #include <InputManager.class.hpp>
+#include <GameObject.class.hpp>
 
 Game::Game(void) {
 }
@@ -32,7 +33,10 @@ void Game::startGame(void) {
 
     Shader s;
     s.initialize("shaders/Shader.vertex", "shaders/Shader.fragment");
-    Model k ("models/krabbs/krabbs.obj", &s);
+    Model model ("models/krabbs/krabbs.obj", &s);
+
+    GameObject go;
+    go.setModel(&model);
 
 
     //									 FOV		    Aspect Ratio			   Near / Far Planes
@@ -42,9 +46,6 @@ void Game::startGame(void) {
 
     InputManager::instance().setCamera(&_camera);
 
-    glm::vec3 pos(1);
-    glm::vec3 scale(1);
-    glm::vec3 rotation(0);
 
     while (g.isOpen()) {
 
@@ -52,7 +53,8 @@ void Game::startGame(void) {
         TimeManager::instance().calculateFrameRate(false);
 
         g.clear();
-        k.draw(&_camera, pos, scale, rotation);
+        go.draw(&_camera);
+        go.transform.rotation.y += TimeManager::instance().deltaTime;
 
         g.display();
     }

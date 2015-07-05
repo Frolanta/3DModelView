@@ -25,7 +25,9 @@ set(SOURCE_FILES
     srcs/TimeManager.class.cpp
     srcs/Game.class.cpp
     srcs/Graphic.class.cpp
-    srcs/InputManager.class.cpp)
+    srcs/InputManager.class.cpp
+    srcs/Transform.class.cpp
+    srcs/GameObject.class.cpp)
 
 set(EXECUTABLE_NAME modelloader)
 
